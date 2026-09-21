@@ -1388,19 +1388,20 @@ body.sunflower-scene {
   transform: scale(.92);
   transform-origin: bottom center;
 }
-.sunflower--1 { --x: 0vmin; --height: 70vmin; --lean: -2deg; --size: 1.12; --delay: .2s; --depth: 16; }
-.sunflower--2 { --x: -13vmin; --height: 60vmin; --lean: -9deg; --size: .92; --delay: .65s; --depth: 13; }
-.sunflower--3 { --x: 13vmin; --height: 63vmin; --lean: 8deg; --size: .97; --delay: 1.1s; --depth: 12; }
-.sunflower--4 { --x: -23vmin; --height: 43vmin; --lean: -13deg; --size: .83; --delay: 1.6s; --depth: 17; }
-.sunflower--5 { --x: 24vmin; --height: 46vmin; --lean: 12deg; --size: .87; --delay: 2.05s; --depth: 18; }
-.sunflower--6 { --x: -9vmin; --height: 36vmin; --lean: -7deg; --size: .9; --delay: 2.5s; --depth: 22; }
-.sunflower--7 { --x: 9vmin; --height: 39vmin; --lean: 5deg; --size: .94; --delay: 2.95s; --depth: 21; }
+.sunflower--1 { --x: 0vmin; --height: 70vmin; --lean: -2deg; --size: 1.12; --delay: .2s; --depth: 16; --breeze-duration: 10.8s; --breeze-delay: -.12s; --sway: .58deg; --counter-sway: .24deg; --sway-origin-x: 48%; --leaf-r1: 30%; --leaf-r2: 66%; --leaf-l1: 44%; --leaf-l2: 78%; --leaf-turn: -2deg; --leaf-upper-scale: 1.04; --leaf-lower-scale: .93; }
+.sunflower--2 { --x: -13vmin; --height: 60vmin; --lean: -9deg; --size: .92; --delay: .65s; --depth: 13; --breeze-duration: 9.4s; --breeze-delay: .16s; --sway: .76deg; --counter-sway: .31deg; --sway-origin-x: 53%; --leaf-r1: 35%; --leaf-r2: 62%; --leaf-l1: 48%; --leaf-l2: 73%; --leaf-turn: 3deg; --leaf-upper-scale: .92; --leaf-lower-scale: 1.06; }
+.sunflower--3 { --x: 13vmin; --height: 63vmin; --lean: 8deg; --size: .97; --delay: 1.1s; --depth: 12; --breeze-duration: 11.2s; --breeze-delay: -.05s; --sway: .49deg; --counter-sway: .22deg; --sway-origin-x: 46%; --leaf-r1: 29%; --leaf-r2: 68%; --leaf-l1: 42%; --leaf-l2: 75%; --leaf-turn: -4deg; --leaf-upper-scale: 1.08; --leaf-lower-scale: .9; }
+.sunflower--4 { --x: -23vmin; --height: 43vmin; --lean: -13deg; --size: .83; --delay: 1.6s; --depth: 17; --breeze-duration: 8.9s; --breeze-delay: .08s; --sway: .82deg; --counter-sway: .38deg; --sway-origin-x: 55%; --leaf-r1: 33%; --leaf-r2: 70%; --leaf-l1: 47%; --leaf-l2: 80%; --leaf-turn: 2deg; --leaf-upper-scale: .88; --leaf-lower-scale: 1.02; }
+.sunflower--5 { --x: 24vmin; --height: 46vmin; --lean: 12deg; --size: .87; --delay: 2.05s; --depth: 18; --breeze-duration: 10.1s; --breeze-delay: -.18s; --sway: .66deg; --counter-sway: .29deg; --sway-origin-x: 49%; --leaf-r1: 37%; --leaf-r2: 64%; --leaf-l1: 43%; --leaf-l2: 72%; --leaf-turn: -3deg; --leaf-upper-scale: .97; --leaf-lower-scale: 1.08; }
+.sunflower--6 { --x: -9vmin; --height: 36vmin; --lean: -7deg; --size: .9; --delay: 2.5s; --depth: 22; --breeze-duration: 11.6s; --breeze-delay: .12s; --sway: .43deg; --counter-sway: .18deg; --sway-origin-x: 51%; --leaf-r1: 28%; --leaf-r2: 61%; --leaf-l1: 50%; --leaf-l2: 77%; --leaf-turn: 4deg; --leaf-upper-scale: 1.06; --leaf-lower-scale: .86; }
+.sunflower--7 { --x: 9vmin; --height: 39vmin; --lean: 5deg; --size: .94; --delay: 2.95s; --depth: 21; --breeze-duration: 9.7s; --breeze-delay: -.08s; --sway: .71deg; --counter-sway: .27deg; --sway-origin-x: 47%; --leaf-r1: 34%; --leaf-r2: 69%; --leaf-l1: 40%; --leaf-l2: 74%; --leaf-turn: -1deg; --leaf-upper-scale: .9; --leaf-lower-scale: 1.04; }
 .sunflower-scene .sunflower {
   left: var(--x);
   bottom: 7vmin;
   z-index: var(--depth);
   transform: rotate(var(--lean));
-  animation: sunflower-breeze 9s calc(var(--delay) + 5s) ease-in-out infinite;
+  transform-origin: var(--sway-origin-x) bottom;
+  animation: sunflower-breeze var(--breeze-duration) calc(var(--delay) + 5s) ease-in-out infinite;
 }
 .sunflower .flower__line {
   width: 1vmin;
@@ -1469,18 +1470,32 @@ body.sunflower-scene {
   transform-origin: left;
   animation: blooming-leaf-right 1.5s calc(var(--delay) + 1.4s) backwards;
 }
-.sunflower .flower__line__leaf--1 { top: 32%; }
-.sunflower .flower__line__leaf--2 { top: 65%; animation-delay: calc(var(--delay) + .9s); }
+.sunflower .flower__line__leaf--1 {
+  top: var(--leaf-r1);
+  transform: rotate(calc(70deg + var(--leaf-turn))) rotateY(30deg) scale(var(--leaf-upper-scale));
+}
+.sunflower .flower__line__leaf--2 {
+  top: var(--leaf-r2);
+  transform: rotate(calc(70deg - var(--leaf-turn))) rotateY(30deg) scale(var(--leaf-lower-scale));
+  animation-delay: calc(var(--delay) + .9s);
+}
 .sunflower .flower__line__leaf--3,
 .sunflower .flower__line__leaf--4 {
   left: auto;
   right: 90%;
-  top: 46%;
   transform-origin: right;
   animation-name: blooming-leaf-left;
   animation-delay: calc(var(--delay) + 1.1s);
 }
-.sunflower .flower__line__leaf--4 { top: 76%; animation-delay: calc(var(--delay) + .7s); }
+.sunflower .flower__line__leaf--3 {
+  top: var(--leaf-l1);
+  transform: rotate(calc(-70deg - var(--leaf-turn))) rotateY(30deg) scale(var(--leaf-upper-scale));
+}
+.sunflower .flower__line__leaf--4 {
+  top: var(--leaf-l2);
+  transform: rotate(calc(-70deg + var(--leaf-turn))) rotateY(30deg) scale(var(--leaf-lower-scale));
+  animation-delay: calc(var(--delay) + .7s);
+}
 .sunflower .flower__light {
   width: .45vmin;
   height: .45vmin;
@@ -1502,7 +1517,8 @@ body.sunflower-scene {
 .sunflower-scene .long-g .leaf { animation-duration: 12s; }
 @keyframes sunflower-breeze {
   0%, 100% { transform: rotate(var(--lean)); }
-  50% { transform: rotate(calc(var(--lean) + .8deg)); }
+  38% { transform: rotate(calc(var(--lean) + var(--sway))); }
+  72% { transform: rotate(calc(var(--lean) - var(--counter-sway))); }
 }
 @media (max-aspect-ratio: 3/4) {
   .sunflower-scene .flowers { bottom: 14svh; transform: scale(1.02); }
@@ -1556,7 +1572,7 @@ body.sunflower-scene {
   padding: 10px 16px;
 }
 .sunflower-scene .flowers > :not(.is-visible) { visibility: hidden; }
-.sunflower-scene .sunflower { animation-delay: var(--ambient-delay); }
+.sunflower-scene .sunflower { animation-delay: calc(var(--ambient-delay) + var(--breeze-delay)); }
 .sunflower .flower__line { animation-duration: var(--grow-duration); }
 .sunflower .flower__leafs {
   animation-delay: var(--open-delay);
@@ -1575,7 +1591,7 @@ body.sunflower-scene {
 }
 
 .sunflower--8 {
-  --x: 20vmin; --height: 26vmin; --lean: 16deg; --size: .52; --depth: 11;
+  --x: 20vmin; --height: 26vmin; --lean: 16deg; --size: .52; --depth: 11; --breeze-duration: 12.1s; --breeze-delay: .2s; --sway: .37deg; --counter-sway: .16deg; --sway-origin-x: 54%; --leaf-r1: 31%; --leaf-r2: 67%; --leaf-l1: 45%; --leaf-l2: 79%; --leaf-turn: 3deg; --leaf-upper-scale: .88; --leaf-lower-scale: 1.05;
   opacity: .83;
 }
 .sunflower--8 .flower__line { width: .65vmin; }
