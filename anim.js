@@ -1,7 +1,7 @@
 const TEXTOS = Object.freeze({
-    entrada: "Tengo un detallito para ti Tahii ^^",
-    finalPrincipal: "Parece que al final alguien sí recibió sus flores amarillas... Aunque en versión sistemas jajajaja",
-    finalSecundario: "Espero que hoy tengas un bonito día Tahii ^^"
+    entrada: "Hola, hola de nuevo Tahii ^^",
+    finalPrincipal: "Parece que sí te gustó la sorpresita de sistemas jajaja",
+    finalSecundario: "Qué hoy tengas un día increíble Tahii ^^"
 });
 const MESSAGE_TIMING = Object.freeze({ secondaryDelay: 1.8 });
 
